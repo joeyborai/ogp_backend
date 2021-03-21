@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Adding in routes
 app.use('/catalog', catalogRouter);
 app.use('/orders', orderRouter);
 
