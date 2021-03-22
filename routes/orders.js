@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var db = require('../bin/mongo').getDb();
 
 router.get('/', (request, response) => {
   const collection = db.getCollection('orders');
