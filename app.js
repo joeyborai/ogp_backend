@@ -19,11 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('../ogp_web/build'));
+app.use(express.static('ogp_web/build'));
 
 //Adding in routes
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../ogp_web/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'ogp_web', 'build', 'index.html'));
 })
 app.use('/catalog', catalogRouter);
 app.use('/orders', orderRouter);
