@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('ogp_web/build'));
+app.use(express.static(path.join(__dirname, 'ogp_web/build')));
 
 //Adding in routes
 app.get('/', (req, res) => {
