@@ -19,19 +19,20 @@ var upload = multer({ storage: storage });
 //var upload = multer({ dest: "uploads/" });
 var imgModel = require('../model');
 
-const url = 'mongodb://localhost:27017';
-const dbName = 'ogp';
+//const url = 'mongodb://localhost:27017';
+//const url = 'mongodb+srv://yborai:BIGlebowski1@cluster0.85xv3.mongodb.net/ogp?retryWrites=true&w=majority';
+const url = 'mongodb+srv://yborai:BIGlebowski1@cluster0.85xv3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-mongoose.connect(url,
-    { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-      console.log('connected')
+mongoose.connect(url, err => {
+      console.log('connected');
+      console.log(err);
     });
 
 router.get('/', (req, res) => {
   imgModel.find({}, (err, items) => {
     if(err) {
       console.log(err);
-      res.status.send('An error occurred', err);
+      res.status(500).send('An error occurred', err);
     }
     else {
       res.json(items);
