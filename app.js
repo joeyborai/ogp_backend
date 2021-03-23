@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'ogp_web/build')));
 
 //Adding in routes
+console.log(path.resolve(__dirname));
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'ogp_web', 'build', 'index.html'));
 })
