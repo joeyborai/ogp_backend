@@ -28,7 +28,7 @@ mongoose.connect(url, err => {
       console.log(err);
     });
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   imgModel.find({}, (err, items) => {
     if(err) {
       console.log(err);
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/new', (req, res) => {
+router.get('/new', (req, res, next) => {
   /*mongo.connect(url, (err, client) => {
     if(err) {
       console.error(err)
@@ -70,7 +70,7 @@ router.get('/new', (req, res) => {
   })*/
 });
 
-router.post('/new', upload.single('image'), (req, res) => {
+router.post('/new', upload.single('image'), (req, res, next) => {
   var data = {
     name: req.body.name,
     price: req.body.price,

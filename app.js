@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var multer = require('multer');
+var cors = require('cors');
 
 var orderRouter = require('./routes/orders');
 var catalogRouter = require('./routes/catalog');
@@ -15,15 +16,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'ogp_web/build')));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //Adding in routes
 console.log(path.resolve(__dirname));
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, 'ogp_web', 'build', 'index.html'));
 })
 app.use('/catalog', catalogRouter);
@@ -33,6 +41,8 @@ app.use('/orders', orderRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 //comme
 // error handler
